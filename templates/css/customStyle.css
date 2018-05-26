@@ -120,6 +120,24 @@ fa-facebook, .fa-twitter, .fa-linkedin, .fa-envelope{position:absolute;right:15p
 }
 
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .beerDiv{width: auto;margin: 10px 20px;}
+.userName {float: right;margin: 15px 0px;}
+#facebook {top: 120px;background-color: #3B5998;}
+#twitter {top: 180px;background-color: #55ACEE;}
+#linkedin {top: 240px;background-color: #007bb5;}
+#email {top: 300px;background-color: #ff6600}
+fa-facebook, .fa-twitter, .fa-linkedin, .fa-envelope{position:absolute;right:15px;top:18px;}
+.cartCounter{
+    background: #333;border-radius: 15px;padding: 4px 8px;
+    font-size: 12px;color: #fff;position: relative;top: 5px;right: 10px;width: 30px;
+}
+.addCart {
+    width: 30px;position: absolute;top: 5px;
+    right: 5px;cursor: pointer;vertical-align: middle;
+    border: 2px solid;border-radius: 25px;height: 30px;
+}
+.addCart > img {height: 20px;width: 20px;    margin: 5px 3px;}
     
 }
