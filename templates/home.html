@@ -1,0 +1,156 @@
+<!-- header starts -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  			<div class="container">
+			    <div class="navbar-header">
+			      <!-- <a class="mainLogo" href="http://www.castsoftware.com/"> -->
+			      <a class="mainLogo" href="https://www.vivriticapital.com/" target='_blank'>
+			      	<img src="templates/images/vivriti-branding-blue.PNG">
+			      	<span class="logoText">Crafts Beer</span>
+			      </a>
+			    </div>
+			    <div class="userName" ng-click='showUser()'>
+			    	<a href="#" class="userProfile">
+			    		<i class="fa fa-lg fa-user-circle" aria-hidden="true"></i>
+			    	</a>
+			    </div>
+			    <div class="cartSection">
+			    	<a href="#" class="userProfile" data-toggle="modal" data-target="#myModal">
+			    		<img src='templates/images/shopping-cart-black.png'>
+			    		<span class='cartCounter'>{{cartItems}}</span>
+			    	</a>
+			    </div>
+			</div>
+		</nav>
+		<div class="arrowBox" ng-show="myUser">
+	        <ul class="">
+	        	<li>
+	        		<a href="javascript:void(0);">
+	        			<span class="profileIcon"> Ragaven</span>
+	        		</a>
+	        	</li>
+	            <li><a href="javascript:void(0);"><span class="profileIcon"><i class="fa fa-user" aria-hidden="true"></i></span> My Profile</a></li>
+	            <li><a href="javascript:void(0);"><span class="profileIcon"><i class="fa fa-cog" aria-hidden="true"></i></span> Account Settings</a></li>
+	            <li><a href="javascript:void(0);"><span class="profileIcon"><i class="fa fa-question-circle" aria-hidden="true"></i></span> Help</a></li>
+	            <li><a href="javascript:void(0);"><span class="profileIcon"><i class="fa fa-sign-in" aria-hidden="true"></i></span> Log out</a></li>
+	        </ul>
+	    </div>
+<!-- header ends -->
+
+
+<div class="row">  
+   <div class="col-md-12">
+		<div class="leftDiv">
+			<div class="input-group col-md-6 searchDiv">
+                <div class="input-group-btn search-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Sort by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains"  ng-click="changeFilter=!changeFilter">Style</a></li>
+                      <li><a href="#its_equal" ng-click="changeFilter=!changeFilter">Ounces</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search item..." ng-model='search.name'>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class=""><img src='templates/images/searcher.png'></span></button>
+                </span>
+            </div>
+
+			<div ng-repeat="x in myData | filter:{name: search.name} | orderBy: !changeFilter ? 'style' : 'ounces' | startFrom:currentPage*pageSize | limitTo:pageSize" class='col-md-4 beerDiv'>
+				<p class='addCart' ng-click="addToCart(x)"><img src='templates/images/shopping-cart.png' title='Add to cart'/></p>
+				<p><h3>{{ x.name }}</h3></p>
+				<div class='inlineDiv'>
+					<p>
+						<span class='cocktailGlass'><img src='templates/images/cocktail-glass-small.png'></span>
+						<span class='beerStyle'>{{ x.style }}</span>
+					</p>
+					<p class='marginLeft10px'>
+						<span class='cocktailGlass'><img src='templates/images/measuring-cup.png'></span>
+						<span class='beerOunce'>{{ x.ounces }}</span>
+					</p>
+				</div>
+				<div class='inlineDiv'>
+					<p ng-if="x.abv >= '0.06' ">
+						<span class='cocktailGlass'><img src='templates/images/smiling.png'></span>
+						<span class='beerIbu'>ABV: {{ x.abv }}</span>
+					</p>
+					<p ng-if="x.abv <= '0.05' ">
+						<span class='cocktailGlass'><img src='templates/images/mad.png'></span>
+						<span class='beerIbu'>ABV: {{ x.abv }}</span>
+					</p>
+					<p ng-if="x.ibu >= '55' " class='marginLeft10px'>
+						<span class='cocktailGlass'><img src='templates/images/smiling.png'></span>
+						<span class='beerIbu'>IBU: {{ x.ibu }}</span>
+					</p>
+					<p ng-if="x.ibu <= '54'  && x.ibu >='1'" class='marginLeft10px'>
+						<span class='cocktailGlass'><img src='templates/images/mad.png'></span>
+						<span class='beerIbu'>IBU: {{ x.ibu }}</span>
+					</p>
+					<p ng-if="x.ibu == '' " class='marginLeft10px'>
+						<span class='cocktailGlass'><img src='templates/images/Confused.png'></span>
+						<span class='beerIbu'>IBU: Not Available</span>
+					</p>
+				</div>		
+			</div>
+		</div> 
+   </div>
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <a href="#" id="facebook">Facebook <span href="#" class="fa fa-facebook"></span> </a>
+  <a href="#" id="twitter">Twitter <span href="#" class="fa fa-twitter"></span> </a>
+  <a href="#" id="linkedin">Linkedin <span href="#" class="fa fa-linkedin"></span> </a>
+  <a href="#" id="email">Email <span href="#" class="fa fa-envelope"></span> </a>
+</div>
+<div class='paginator'>
+	<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"> << </button>
+    <span class='whiteText'>Page {{currentPage+1}} / {{myData.length/10}}</span>
+    <button ng-disabled="currentPage >= myData.length/pageSize - 1" ng-click="currentPage=currentPage+1"> >> </button>
+</div> 
+
+
+
+       <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Your Cart</h4>
+      </div>
+      <div class="modal-body">
+        <table border="1" class="mytable">
+        <tr>
+        	<td class="col-md-4 center-text">Item</td>
+            <td class="col-md-1 center-text">Qty</td>
+            <td class="col-md-1 center-text">Remove</td>
+        </tr>
+        <tr ng-repeat="x in myCartItems">
+            <td class='center-text'>{{ x.name }}</td>
+			<td class='center-text'> 1 </td>
+			<td class='center-text' ng-click='removeFromCart(x)'> <span class='remove-btn'>X</span> </td>
+        </tr>
+       </table>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(e){
+    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+		e.preventDefault();
+		var param = $(this).attr("href").replace("#","");
+		var concept = $(this).text();
+		$('.search-panel span#search_concept').text(concept);
+		$('.input-group #search_param').val(param);
+	});
+});
+</script>
+  	
+  

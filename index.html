@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang = "en" ng-app="vivriti">
+<head>
+ <!-- META SECTION -->
+    <!-- <title>McaaS</title>       -->      
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<!-- CSS Include -->
+	<link rel="shortcut icon" href="templates/images/vivriti.ico" />
+	<link rel="stylesheet" href="templates/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="templates/css/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+	<link rel="stylesheet" href="templates/css/customStyle.css" />
+
+</head>
+
+<body>
+	<div class="container mainContainer">
+		<div ui-view ="" class="mainSection"></div>
+	</div>	
+	
+   	<script src= "lib/jquery.js"></script>
+    <script src= "lib/angular.js"></script>
+    <script src= "lib/angular-ui-router.js"></script>
+    <script src= "lib/angular-sanitize.js"></script>
+    <script src= "lib/bootstrap.js"></script>
+	<script src= "config/app.js"></script>
+	<script src= "config/route.js"></script>
+
+	<script src= "controllers/vivritiController.js"></script>
+	<!-- <script src= "services/urlMapperService.js"></script> -->
+	
+	 
+</body>
+</html>

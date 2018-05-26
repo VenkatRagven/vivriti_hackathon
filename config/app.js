@@ -1,0 +1,1 @@
+var vivritiHack = angular.module("vivriti",['ui.router']);
